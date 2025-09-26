@@ -16,7 +16,7 @@ image-fun-numpy/
 │
 ├── src/                           # main package folder
 │   ├── __init__.py
-│   ├── load.py                   # load & inspect images
+│   ├── load.py                    # load & inspect images
 │   ├── transform.py               # flips, rotations
 │   ├── grayscale.py               # grayscale conversion
 │   ├── color_ops.py               # color manipulations
@@ -26,12 +26,12 @@ image-fun-numpy/
 ├── images/                        # sample input/output images
 │   
 │
-├── tests/                         # minimal tests
+├── tests/                                  # minimal tests
 │   └── test_basic.py
 │
-├── docs/                          # project documentation
-│      ├── Project Documentation.md     # High-level architecture explanation
-│      └── sequence_diagram.png   # Flow diagram of image processing steps
+├── docs/                                   # project documentation
+│      ├── Project Documentation.md         # High-level architecture explanation
+│      └── sequence_diagram.md              # Flow diagram of image processing steps
 │   
 │ 
 │
