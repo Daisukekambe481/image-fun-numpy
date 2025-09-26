@@ -12,20 +12,34 @@ It is organized so each component has its own dedicated file to avoid clutter an
 
 
 ```
-docs/
-architecture/
-system_overview.md # High-level architecture explanation
-sequence_diagram.png # Flow diagram of image processing steps
-implementation/
-loader.md # Loading & inspecting images
-transformations.md # Flip & rotate operations
-grayscale.md # Grayscale conversion guidance
-color_ops.md # Color manipulations
-filters.md # Image filters (blur, sharpen, edges)
-effects.md # Fun effects (mosaic, glitch, noise)
-implementation_guidance.md # Guidance on researching and implementing features
-README.md # This file
-CONTRIBUTING.md # Contribution guidelines for the project
+image-fun-numpy/
+│
+├── src/                           # main package folder
+│   ├── __init__.py
+│   ├── load.py                   # load & inspect images
+│   ├── transform.py               # flips, rotations
+│   ├── grayscale.py               # grayscale conversion
+│   ├── color_ops.py               # color manipulations
+│   ├── filters.py                 # blur, sharpen, edges
+│   └── effects.py                 # fun extras
+│
+├── images/                        # sample input/output images
+│   
+│
+├── tests/                         # minimal tests
+│   └── test_basic.py
+│
+├── docs/                          # project documentation
+│      ├── Project Documentation.md     # High-level architecture explanation
+│      └── sequence_diagram.png   # Flow diagram of image processing steps
+│   
+│ 
+│
+├── README.md                      # Project overview and instructions
+├── .gitignore                     # Standard Python ignore file
+├── pyproject.toml                 # Uvicorn/FastAPI project config
+└── uv.lock                        # Dependency lock file
+
 ```
 
 
