@@ -1,7 +1,7 @@
 """
 Basic Tests
 -----------
-Minimal tests to ensure the structure works.
+Minimal tests to ensure structure works.
 """
 
 def test_placeholder():
