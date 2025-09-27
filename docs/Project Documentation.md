@@ -62,13 +62,13 @@ For **component-level** implementation guidance. Each file is a **guidance doc**
 
 | File | Purpose |
 | ---------------------------- | ----------------------------------------------------------------------- |
-| `loader.md` | Loading & inspecting images, verifying shape, sample pixels |
-| `transformations.md` | Flip horizontally/vertically, rotate 90°, use NumPy slicing |
-| `grayscale.md` | Grayscale conversion using `np.mean`, display with matplotlib |
-| `color_ops.md` | Invert, brighten/darken, isolate color channels |
-| `filters.md` | Blur, sharpen, edge detection using convolution kernels |
-| `effects.md` | Fun effects: mosaic, thresholding, noise, glitch |
-| `implementation_guidance.md` | Research guidance, naming conventions, and reusable code patterns |
+| `loader.py` | Loading & inspecting images, verifying shape, sample pixels |
+| `transformations.py` | Flip horizontally/vertically, rotate 90°, use NumPy slicing |
+| `grayscale.py` | Grayscale conversion using `np.mean`, display with matplotlib |
+| `color_ops.py` | Invert, brighten/darken, isolate color channels |
+| `filters.py` | Blur, sharpen, edge detection using convolution kernels |
+| `effects.py` | Fun effects: mosaic, thresholding, noise, glitch |
+
 
 
 ---
