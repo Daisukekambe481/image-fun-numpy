@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [integration]  # Run CI on PRs targeting integration
+  push:
+    branches: [integration]  # Optional: run on push to integration
+
+jobs:
+  lint:
+    name: Lint & Auto-Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black numpy pillow matplotlib pytest
+
+      - name: Run linter
+        run: ruff .
+
+      - name: Auto-format check
+        id: format
+        run: |
+          black --check .
+        continue-on-error: true
+
+      - name: Comment on PR if formatting needed
+        if: steps.format.outcome == 'failure'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            ⚡️ Some files need formatting. Run `black .` locally and push changes.
+
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pillow matplotlib pytest
+
+      - name: Run tests
+        run: pytest tests/
+
+  pr-guard:
+    name: PR Guard
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.base_ref == 'main' && github.head_ref != 'dev'
+    steps:
+      - name: Comment on unsafe PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            ⚠️ PR to `main` branch is not allowed from this branch. Please open PR to `integration`.
