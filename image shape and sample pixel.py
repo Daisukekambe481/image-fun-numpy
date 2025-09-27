@@ -7,7 +7,7 @@ img = Image.open(r"C:\Users\Rameez\OneDrive\Projects\numpy project\image-fun-num
 # Convert to NumPy array
 img_array = np.array(img)
 
-# Print shape
+# Print Image shape
 print("Image shape:", img_array.shape)
 
 # Print a small 5x5 block of pixels (rows 40-44, cols 40-44)
