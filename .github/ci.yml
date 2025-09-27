@@ -18,17 +18,26 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Create & activate uv environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          source .venv/bin/activate
+          pip install --upgrade pip
           pip install ruff black numpy pillow matplotlib pytest
 
       - name: Run linter
-        run: ruff .
+        run: |
+          source .venv/bin/activate
+          ruff .
 
       - name: Auto-format check
         id: format
         run: |
+          source .venv/bin/activate
           black --check .
         continue-on-error: true
 
@@ -37,7 +46,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            ⚡️ Some files need formatting. Run `black .` locally and push changes.
+            ⚡️ Some files need formatting. Run `black .` locally in your uv environment and push changes.
 
   test:
     name: Run Unit Tests
@@ -51,13 +60,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Activate uv environment & install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
           pip install numpy pillow matplotlib pytest
 
       - name: Run tests
-        run: pytest tests/
+        run: |
+          source .venv/bin/activate
+          pytest tests/
 
   pr-guard:
     name: PR Guard
